@@ -1,31 +1,68 @@
-* {
-box-sizing: border-box;
-padding: 0;
-margin: 0;
-font-style: 12;
-text-align: center;
-height: 50px;
-width: 100%;
-padding: 6px;
-
-}
-
+html,
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-  }
-
-* {
-background-color: rgba(243, 241, 240, 0.856);
-font-family: Arial, Helvetica, sans-serif;
-color: #333;
+  font-family: "Roboto", sans-serif;
+  height: 100%;
+}
+#highScores div div {
+  padding: 5px;
+  font-weight: 600;
+}
+#highScores div div:nth-child(odd) {
+  background-color: #efe6f9;
+}
+#highScores button {
+  margin: 5px 0;
+}
+/* Section Specific Styles */
+#positionWrapper {
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100% - 110px);
 }
 
-.container {
-    text-align: center;
-  }
-
-  ul  { 
-    border: #000 1px solid; padding: 40px 40px 40px 40px;
-    list-style: none;
-  }
+section {
+  max-width: 50%;
+  margin: 0 auto;
+}
+#controls {
+  background-color: #41275e;
+}
+#info {
+  max-width: 980px;
+  margin: 0 auto;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 16px 30px;
+}
+#scores {
+  /* position:absolute; */
+  /* top:16px; */
+  left: 40px;
+  background-color: #834bc2;
+  color: white;
+}
+#timer {
+  /* position:absolute; */
+  /* top:0; */
+  right: 40px;
+}
+#intro {
+  text-align: center;
+}
+button {
+  background-color: #41275e;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#intro button:hover {
+  background-color: #613a8d;
+}
+#quizHolder #title {
+  font-weight: 700;
+}

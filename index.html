@@ -10,23 +10,44 @@
 </head>
 
 <body>
+    <div id="controls">
+        <div id="info">
+          <button id="scores" href="">View High Scores</button>
+          <div id="timer"><p>Time: <span id="timer">0</span></p></div>
+        </div>
+      </div>
+
+     <!--beginning content-->
     <h1>Code Quiz Challenge</h1>
     <p>Test your knowledge of Black American Pop Musicians!</p> <br>Can you match the artist to the right band?<br>
     Each artist will be accompanied by four option. <br>Click on the band that best matches the band the artist is
     conect with.</p>
-    <div class="container">
-        <div id=start><button class="start-btn" onClick="startQuiz()">Start Quiz!</button>
-            <div id="questions"></div>
-            <ul class="choiceList"></ul>
-            <div id="timer"></div>
+    <div class="col-xs-12 col-sm-8 col-md-6" id="buttonDiv"><button type="button" class="btn btn-dark"
+        id="startButton">Start Quiz</button>
+    </div>  
+            <!--Q&A-->    
+            <h2 id="questions"></h2>
+                <div class="button">
+                    <button class="choiceA">A</button>
+                </div><br>
+                <div class="button">
+                    <button class="choiceB">B</button>
+                </div><br> 
+                <div class="button">
+                    <button class="choiceC">C</button>
+                </div><br> 
+                <div class="button">
+                    <button class="choiceD">D</button>
+            </div> 
+            
+
+            <div id="timeguage"></div>
             <div id="counter"></div>
             <div id="quiz"></div>
             <div id="results"></div>
-        </div>
-    </div>
+       
+<script src="./script.js"></script> 
 
-
-    <script src="Timed-Quiz.js"></script>
 </body>
 
 
