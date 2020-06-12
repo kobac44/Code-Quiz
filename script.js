@@ -1,62 +1,28 @@
 //Variables
 const startButton = document.querySelector("#startButton");
-const questionsEl = document.querySelector("#questions");
+const questionsEl = document.querySelector("#question");
 const correctAnswersEl = document.querySelector("#answers");
-const scoreListEl = document.querySelector("#scores");
+let scoreArray = localStorage.getItem("highscore");
 const timer = document.querySelector("#time");
-const counterEL = document.querySelector("#counter");
 const choiceA = document.querySelector("A");
 const choiceB = document.querySelector("B");
 const choiceC = document.querySelector("C");
 const choiceD = document.querySelector("D");
-const correctAnswerEl = document.querySelector("#answer");
 const resultsContainer = document.querySelector("#results");
 const submitButtonEl = document.querySelector("#submit");
 let secondsLeft = 75;
 const storedScores = document.querySelector("scorelist");
-const backButton = document.querySelector("#go-back");
 const clearScores = document.querySelector("#clear-highscores");
-let highScoreList = v
+let highScore = [];
 const messageDiv = document.querySelector("#message");
 let timerReturn = "";
 let index = 0;
 let user = "";
+let checkAnswerDisplay = document.createElement("p");
 
-//TIMERFUNCTION;
-function time() {
-  secondsLeft--;
+// this checks if scoreArray already exists
 
-  if (secondsLeft <= 0) {
-    secondsLeft = 0;
-  }
-
-  timer.textContent = secondsLeft;
-}
-
-//START TIMER FUNCTION
-function startTime() {
-  let timerInterval = setInterval(time, 1000);
-}
-
-//START BUTTON
-startButton.addEventListener("click", function (event) {
-  event.preventDefault();
-  //Start Timer
-  startTime();
-  //Hide Quiz Header and Start Display
-
-  //Start Questions
-  startGame();
-});
-
-function startGame() {
-  alert("start game");
-}
-//question, end game quiz
-//function that goes through the array, grab data from the question to build the elements on the page.
-// need to
-// create the questions
-const questions = [
+const question = [
   {
     question: "Lionel Richie played with?",
     answers: {
@@ -97,4 +63,46 @@ const questions = [
     },
     correctAnswer: choiceC,
   },
+];
 
+//TIMER FUNCTION
+function time() {
+  secondsLeft--;
+
+  if (secondsLeft <= 0) {
+    secondsLeft = 0;
+  }
+
+  timer.textContent = secondsLeft;
+}
+
+//START TIMER FUNCTION
+function startTimer() {
+  let timerInterval = setInterval(time, 1000);
+}
+
+//START BUTTON
+startButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  //Start Timer
+  startTimer();
+});
+function stopTimer() {
+  clearInterval(timerReturn);
+  timer.textContent = 0;
+}
+
+//question, end game quiz
+//function that goes through the array, grab data from the question to build the elements on the page.
+// need to
+// create the questions
+startButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  //Start Timer
+  timerReturn = startTimer();
+  //Hide Quiz Header and Start Display
+  quizHeader.style.display = "none";
+  startDisplay.style.display = "none";
+  //Start Questions
+  createQuestionDisplay();
+});
