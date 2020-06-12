@@ -1,95 +1,60 @@
-//select all elements
-const startEl = document.querySelector("#startSbtn");
+//Variables
+const startButton = document.querySelector("#startButton");
 const questionsEl = document.querySelector("#questions");
 const correctAnswersEl = document.querySelector("#answers");
 const scoreListEl = document.querySelector("#scores");
-const timerEl = document.querySelector("#timer");
+const timer = document.querySelector("#time");
 const counterEL = document.querySelector("#counter");
-const ChoicesEl = document.querySelector("answers");
 const choiceA = document.querySelector("A");
 const choiceB = document.querySelector("B");
 const choiceC = document.querySelector("C");
 const choiceD = document.querySelector("D");
 const correctAnswerEl = document.querySelector("#answer");
-const quizContainer = document.querySelector("#quiz");
 const resultsContainer = document.querySelector("#results");
 const submitButtonEl = document.querySelector("#submit");
-const secondsLeft = 180;
+let secondsLeft = 75;
 const storedScores = document.querySelector("scorelist");
 const backButton = document.querySelector("#go-back");
 const clearScores = document.querySelector("#clear-highscores");
-const highScoreList = document.querySelector("#highScores");
+let highScoreList = v
 const messageDiv = document.querySelector("#message");
+let timerReturn = "";
+let index = 0;
+let user = "";
 
-function setTimer() {
-  var timerInterval = setInterval(function () {
-    secondsLeft--;
-    timer.textContent = "Timer" + secondsLeft;
+//TIMERFUNCTION;
+function time() {
+  secondsLeft--;
 
-    if (secondsLeft === 0) {
-      clearInterval(timerInterval);
-      alert("Out of Time");
-      questionsEnder;
-    } else if (i === questions.length) {
-      clearInterval(timerInterval);
-    }
-  }, 1000);
-  return;
-}
-function questionEnder() {
-  const scoreTag = document.createElement("h1");
-  const inputTag = document.createElement("input");
-  const submitButton = document.createElement("button");
-  score += secondsLeft * 0.1;
-  score = score.toFixed(2);
-  document.getElementById("question").textContent = "All Done!";
-  answerOne.remove();
-  answerTwo.remove();
-  answerThree.remove();
-  answerFour.remove();
-  document.body.children[1].appendChild(scoreTag);
-  document.getElementsByTagName("h1")[0].setAttribute("id", "score");
-  document.getElementById("score").textContent = "Your Score: " + score;
-  document.body.children[1].appendChild(inputTag);
-  document.getElementsByTagName("input")[0].setAttribute("id", "input-field");
-  submitButton.textContent = "Submit";
-  document.body.children[1].appendChild(submitButton);
-  submitButton.addEventListener("click", function (event) {
-    event.preventDefault();
-    var highScoreText = new Object();
-    highScoreText.name = inputTag.value.trim();
-    highScoreText.newScore = score;
-    storeScores(highScoreText);
-    window.location.href = "highScores.html";
-  });
-}
-
-function questionSetter() {
-  document.getElementById("startQuiz").hidden = true;
-  if (i === questions.length) {
-    questions();
-  } else {
-    document.getElementById("question").textContent = questions[i]["questions"];
-    document.getElementById("answerB").textContent =
-      questions[i]["choicesA"][0];
-    document.getElementById("answerC").textContent =
-      questions[i]["choicesB"][1];
-    document.getElementById("answerB").textContent = questions[i]["choiceC"][2];
-    document.getElementById("answerC").textContent = questions[i]["choiceD"][3];
+  if (secondsLeft <= 0) {
+    secondsLeft = 0;
   }
+
+  timer.textContent = secondsLeft;
 }
 
-function storeScores(highScoreText) {
-  tempArray = JSON.parse(localStorage.getItem("scores"));
-  if (tempArray === null) {
-    scoreList.push(highScoreText);
-    localStorage.setItem("scores", JSON.stringify(scoreList));
-  } else {
-    tempArray.push(highScoreText);
-    localStorage.setItem("scores", JSON.stringify(tempArray));
-  }
+//START TIMER FUNCTION
+function startTime() {
+  let timerInterval = setInterval(time, 1000);
 }
 
+//START BUTTON
+startButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  //Start Timer
+  startTime();
+  //Hide Quiz Header and Start Display
+
+  //Start Questions
+  startGame();
+});
+
+function startGame() {
+  alert("start game");
+}
+//question, end game quiz
+//function that goes through the array, grab data from the question to build the elements on the page.
+// need to
 // create the questions
 const questions = [
   {
@@ -132,23 +97,4 @@ const questions = [
     },
     correctAnswer: choiceC,
   },
-];
 
-document
-  .getElementById("startButton")
-  .addEventListener("click", questionSetter);
-document.getElementById("startButton").addEventListener("click", setTime);
-document.getElementById("startButton").addEventListener("click", function () {
-  messageDiv.textContent = "";
-});
-
-function storeScores(highScoreText) {
-  tempArray = JSON.parse(localStorage.getItem("scores"));
-  if (tempArray === null) {
-    scoreList.push(highScoreText);
-    localStorage.setItem("scores", JSON.stringify(scoreList));
-  } else {
-    tempArray.push(highScoreText);
-    localStorage.setItem("scores", JSON.stringify(tempArray));
-  }
-}
