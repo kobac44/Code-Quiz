@@ -23,7 +23,7 @@
   <body>
     <!--beginning content-->
     <div class="container">
-      <div class="row text-center" id="quizTitle">
+      <div class="row1 text-center" id="quizTitle">
         <div class="col">
           <h1>Coding Quiz</h1>
         </div>
@@ -43,25 +43,30 @@
 
       <!--Q&A-->
       <div class="container">
-        <div class="row">
-          <ul class="col" id="queA"></ul>
+        <div class="row2">
+          <div class="col" id="queA"></div>
             <h2 id="question"></h2>
             <div id="answers">
-              <button class="choiceA">A</button>
-              <button class="choiceB">B</button>
-              <button class="choiceC">C</button>
-              <button class="choiceD">D</button>
             </div>
         </div>
       </div>
       <br />
 
-      <div class="row">
-        <div class="col">
+      <div class="row3">
+        <div class="col"></div>
+            <div class="col">  
+                <div id="highscoreContent"></div>  
+            </div>
+        <div class="col"></div>
+      </div>
+   </div>
+      
+      <div class="row4">
+        <div class="col"></div>
           All Done!
-        <p>Your final score is <span id="final"></p>
+        <p>Your final score is <span id="finalscoreDispay"></p>
         <div class="input">
-          Enter initials: <input type="text" id="finalInput" />
+          Enter initials: <input type="text" id="finalInput">
           <button id="finalSubmit">Submit</button>
         </div>
       </div>

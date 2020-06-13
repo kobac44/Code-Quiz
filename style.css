@@ -55,14 +55,7 @@ section {
 #intro {
   text-align: center;
 }
-button {
-  background-color: #41275e;
-  color: white;
-  border: none;
-  padding: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-}
+
 #intro button:hover {
   background-color: #613a8d;
 }
