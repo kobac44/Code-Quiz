@@ -13,7 +13,7 @@
   </head>
 
   <header class="header">
-    <a href="./highScore.html" class="score">View Highscore</a>
+    <div id="highscorebtn" class="score">View Highscore</a>
     <div class="header-right">
       <a href="#time"></a>
       <span id="time">Time:0</span>
@@ -50,26 +50,33 @@
             </div>
         </div>
       </div>
+      <div class="row2.5">
+        <div class="answerCheck">
+        </div>
+      </div>
       <br />
-
-      <div class="row3">
+      <!--Highscore Content Input Begins-->
+      <div class="row">
         <div class="col"></div>
-            <div class="col">  
+            <div class="col-md-12 text-center">  
                 <div id="highscoreContent"></div>  
             </div>
         <div class="col"></div>
-      </div>
-   </div>
-      
-      <div class="row4">
+    </div>
+<!--Highscore Content Input Ends-->
+     
+      <div class="row">
         <div class="col"></div>
-          All Done!
-        <p>Your final score is <span id="finalscoreDispay"></p>
-        <div class="input">
-          Enter initials: <input type="text" id="finalInput">
-          <button id="finalSubmit">Submit</button>
-        </div>
-      </div>
+            <div class="col-md-12 text-center">  
+                <div id="highscoreDisplay"></div>  
+            </div>
+        <div class="col"></div>
+    </div>
+    <!--Highscore Display Content Ends-->
+
+</main>
+<!--Code Quiz Content Ends-->
+      
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

@@ -4,10 +4,10 @@ const questionsEl = document.querySelector("#question");
 const correctAnswersEl = document.querySelector("#answers");
 let scoreArray = localStorage.getItem("highscore");
 const timer = document.querySelector("#time");
-const choiceA = document.querySelector(`A`);
-const choiceB = document.querySelector(`B`);
-const choiceC = document.querySelector(`C`);
-const choiceD = document.querySelector(`D`);
+// const choiceA = document.querySelector(`A`);
+// const choiceB = document.querySelector(`B`);
+// const choiceC = document.querySelector(`C`);
+// const choiceD = document.querySelector(`D`);
 const resultsContainer = document.querySelector(`#results`);
 const submitButtonEl = document.querySelector(`#submit`);
 let secondsLeft = 75;
@@ -32,7 +32,7 @@ const question = [
       `D. Five Heartbeats`,
     ],
 
-    correctnAswer: `B`,
+    correctAnswer: `B`,
   },
   {
     question: `Maurice White played with?`,
@@ -155,7 +155,7 @@ function checkAnswer() {
     //console.log(this.value);
     checkAnswerDisplay.textContent = "Incorrect";
     checkAnswerDisplay.style.textAlign = "center";
-    answerCheck.appendChild(checkAnswerDisplay);
+    //answerCheck.appendChild(checkAnswerDisplay);
     secondsLeft = secondsLeft - 10; //Time deduction
     console.log(secondsLeft); //Test
     timer.textContent = secondsLeft;
@@ -176,4 +176,129 @@ function checkAnswer() {
 }
 
 //END QUIZ FUNCTION
-/*Function Description: */
+/*Function  */
+function endQuiz() {
+  //Function stops the timer once time is logged as the score.
+  stopTimer();
+
+  /* Hide quiz instructions and start button as well as the questions and answers 
+  - including the incorrect or correct display at the buttom of the page*/
+  queA.style.display = "none";
+  startDisplay.style.display = "none";
+  queA.style.display = "none";
+  //answerCheck.style.display = "none";
+
+  //HIGHSCORE LOCAL VARIABLES
+  /*Description: Variables needed in order to collect and store highscores. Creates Initial Input Display.*/
+  const highscoreInputHeader = document.createElement("h1");
+  const highscoreInputHeaderText = document.createTextNode("Highscores");
+  let score = secondsLeft; //Score calculated by determining the amount of time left when the quiz ends.
+  const scoreDisplay = document.createElement("p");
+  scoreDisplay.textContent = "Your final score is " + score + ".";
+  const initialsInputLabel = document.createElement("LABEL");
+  initialsInputLabel.textContent = "Enter initials: ";
+  const initialsInput = document.createElement("INPUT");
+  initialsInput.setAttribute("type", "text");
+  initialsInput.setAttribute("value", "YI");
+  const submitButton = document.createElement("button");
+  submitButton.innerHTML = "Submit";
+  submitButton.className += "btn btn-primary";
+
+  //SUBMIT HIGHSCORE
+  /*Description: Upon clicking the submit button, the username and score is saved 
+      to the localStorage and displayed under Highscores (which can also be accessed by pressing the
+      'View Highscores' button shown below). */
+
+  submitButton.onclick = function (event) {
+    event.preventDefault;
+    //Prompt for initials to collect username for localStorage
+    let userName = initialsInput.value;
+    console.log(userName);
+    //STORE SCORE
+    function storeHighscore() {
+      //localStorage.getItem('highscore')
+      // if the above is a value (scoreArray) push new object ie. { user: userName, score: score }
+      scoreArray.push({ user: userName, score: score });
+      localStorage.setItem("highscore", JSON.stringify(scoreArray));
+      // scoreArray = [{ user: userName, score: score },  { user: userName, score: score }]
+    }
+    //STORE USER
+    // function storeUser() {
+    //   localStorage.setItem("user", JSON.stringify(userName));
+    // }
+    //LOGGED FUNCTION
+    /*Description: The username and score are stored IF the current score 
+        is higher than the previously stored highscore*/
+    // if (score > JSON.parse(localStorage.getItem("highscore"))) {
+    storeHighscore();
+    // }
+    //Function creates input area
+    highscoresDisplay();
+  };
+  //Displays Highscore Input Area in HTML
+  highscoreInputHeader.appendChild(highscoreInputHeaderText);
+  highscoreContent.appendChild(highscoreInputHeader);
+  highscoreContent.appendChild(scoreDisplay);
+  highscoreContent.appendChild(initialsInputLabel);
+  highscoreContent.appendChild(initialsInput);
+  highscoreContent.appendChild(submitButton);
+}
+
+//VIEW HIGHSCORE BUTTON
+const highscoreButton = document.getElementById("highscorebtn");
+highscoreButton.onclick = function (event) {
+  event.preventDefault;
+  highscoresDisplay();
+};
+
+//HIGHSCORE DISPLAY FUNCTION
+/*Inputs are displayed after inputs are collected. Intials and highscore displayed. Score displayed is equivalent to 
+     the seconds left on the timer when the quiz ends. */
+function highscoresDisplay() {
+  /* Hide quiz instructions and start button as well as the questions and answers 
+      and the Highscore input diplay page*/
+  queA.style.display = "none";
+  startDisplay.style.display = "none";
+  queA.style.display = "none";
+  highscoreContent.style.display = "none";
+  //Creates "Highscore" Header and collects data for localStorage
+  const highscoreHeader = document.createElement("h1");
+  const highscoreHeaderText = document.createTextNode("Highscores");
+  const highscoreList = document.createElement("div");
+  highscoreHeader.appendChild(highscoreHeaderText);
+  highscoreDisplay.appendChild(highscoreHeader);
+  for (let i = 0; i < scoreArray.length; i++) {
+    let highscoreLatest = document.createElement("p");
+    let highscoreLatestText = document.createTextNode(
+      scoreArray[i].user + " - " + scoreArray[i].score
+    );
+    highscoreLatest.appendChild(highscoreLatestText);
+    highscoreList.appendChild(highscoreLatest);
+  }
+  highscoreDisplay.appendChild(highscoreList);
+  //GO BACK BUTTON
+  const goBackButton = document.createElement("button");
+  goBackButton.innerHTML = "Go Back";
+  goBackButton.className += "btn btn-primary";
+  goBackButton.onclick = function (event) {
+    event.preventDefault;
+    window.location.reload();
+  };
+
+  //CLEAR BUTTON
+  const clearButton = document.createElement("button");
+  clearButton.innerHTML = "Clear Highscore";
+  clearButton.className += "btn btn-primary";
+  clearButton.onclick = function (event) {
+    event.preventDefault;
+    window.localStorage.clear();
+    highscoreList.innerHTML = "";
+  };
+
+  //Displays highscore information
+  highscoreDisplay.appendChild(goBackButton);
+  highscoreDisplay.appendChild(clearButton);
+
+  //Disable View Highscore Button
+  highscoreButton.disabled = true;
+}
