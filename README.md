@@ -32,6 +32,6 @@ When you're done, you will be prompted to enter your initials which will be save
 Good luck!
 
 
-https://www.geeksforgeeks.org/remove-all-the-child-elements-of-a-dom-node-in-javascript/
-https://medium.com/@monica1109/scheduling-settimeout-and-setinterval-ca2ee50cd99f
-https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage  
+* https://www.geeksforgeeks.org/remove-all-the-child-elements-of-a-dom-node-in-javascript/
+* https://medium.com/@monica1109/scheduling-settimeout-and-setinterval-ca2ee50cd99f
+* https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage  
